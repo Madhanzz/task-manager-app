@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
+const protect = require("./middleware/authMiddleware");
 
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
@@ -19,6 +20,13 @@ app.use("/api/auth", authRoutes);
 app.get("/", (req, res) => {
   res.json({
     message: "Task Manager API Running",
+  });
+});
+
+app.get("/api/profile", protect, (req, res) => {
+  res.json({
+    message: "Protected Route Accessed",
+    user: req.user,
   });
 });
 
