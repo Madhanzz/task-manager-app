@@ -1,28 +1,68 @@
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import API from "../services/authApi";
 
 function Login() {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const res = await API.post(
+        "/login",
+        formData
+      );
+
+      localStorage.setItem(
+        "token",
+        res.data.token
+      );
+
+      navigate("/dashboard");
+    } catch (error) {
+      alert(error.response?.data?.message);
+    }
+  };
+
   return (
     <div>
       <h1>Login</h1>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
+          name="email"
           placeholder="Email"
+          onChange={handleChange}
         />
 
-        <br />
-        <br />
+        <br /><br />
 
         <input
           type="password"
+          name="password"
           placeholder="Password"
+          onChange={handleChange}
         />
 
-        <br />
-        <br />
+        <br /><br />
 
-        <button>Login</button>
+        <button type="submit">
+          Login
+        </button>
       </form>
 
       <p>
