@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../services/authApi";
+import "../styles/auth.css";
 
 function Register() {
   const navigate = useNavigate();
@@ -32,8 +33,9 @@ function Register() {
     }
   };
 
-  return (
-    <div>
+ return (
+  <div className="auth-container">
+    <div className="auth-card">
       <h1>Register</h1>
 
       <form onSubmit={handleSubmit}>
@@ -44,16 +46,12 @@ function Register() {
           onChange={handleChange}
         />
 
-        <br /><br />
-
         <input
           type="email"
           name="email"
           placeholder="Email"
           onChange={handleChange}
         />
-
-        <br /><br />
 
         <input
           type="password"
@@ -62,19 +60,21 @@ function Register() {
           onChange={handleChange}
         />
 
-        <br /><br />
-
         <button type="submit">
           Register
         </button>
       </form>
 
       <p>
-        Already have an account?
-        <Link to="/"> Login </Link>
+        Already have an account?{" "}
+        <Link to="/">
+          Login
+        </Link>
       </p>
     </div>
-  );
+  </div>
+);
+    
 }
 
 export default Register;

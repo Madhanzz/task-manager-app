@@ -4,14 +4,7 @@ function TaskCard({
   onUpdate,
 }) {
   return (
-    <div
-      style={{
-        border: "1px solid #ddd",
-        padding: "15px",
-        borderRadius: "8px",
-        marginBottom: "10px",
-        backgroundColor: "#fff",
-      }}
+    <div className="task-card"
     >
       <h4>{task.title}</h4>
 

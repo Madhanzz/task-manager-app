@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import API from "../services/authApi";
+import "../styles/auth.css";
 
 function Login() {
   const navigate = useNavigate();
@@ -38,7 +39,8 @@ function Login() {
   };
 
   return (
-    <div>
+  <div className="auth-container">
+    <div className="auth-card">
       <h1>Login</h1>
 
       <form onSubmit={handleSubmit}>
@@ -49,8 +51,6 @@ function Login() {
           onChange={handleChange}
         />
 
-        <br /><br />
-
         <input
           type="password"
           name="password"
@@ -58,20 +58,20 @@ function Login() {
           onChange={handleChange}
         />
 
-        <br /><br />
-
         <button type="submit">
           Login
         </button>
       </form>
 
       <p>
-        Don't have an account?
+        Don't have an account?{" "}
         <Link to="/register">
           Register
         </Link>
       </p>
     </div>
+  </div>
+
   );
 }
 

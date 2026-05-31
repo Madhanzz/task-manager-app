@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../services/taskApi";
+import "../styles/createTask.css";
 
 function CreateTask() {
   const navigate = useNavigate();
@@ -31,7 +32,8 @@ function CreateTask() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+   <div className="create-container">
+  <div className="create-card">
       <h1>Create Task</h1>
 
       <form onSubmit={handleSubmit}>
@@ -77,6 +79,7 @@ function CreateTask() {
         </button>
       </form>
     </div>
+     </div>
   );
 }
 
